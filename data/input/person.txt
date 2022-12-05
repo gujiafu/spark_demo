@@ -4,3 +4,4 @@
 4 zhaoliu 30
 5 tianqi 35
 6 kobe 40
+7 kobe7 40
