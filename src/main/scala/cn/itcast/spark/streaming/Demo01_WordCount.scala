@@ -9,6 +9,7 @@ import org.apache.spark.streaming.{Duration, StreamingContext}
  * Author: itcast caoyu
  * Date: 2021-04-10 0010 16:27
  * Desc: 演示流计算入门WordCount
+ * liunx 执行 nc -lk 9999
  */
 object Demo01_WordCount {
   def main(args: Array[String]): Unit = {
