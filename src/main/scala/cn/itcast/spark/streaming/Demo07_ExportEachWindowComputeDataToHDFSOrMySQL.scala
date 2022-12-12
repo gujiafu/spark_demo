@@ -77,7 +77,7 @@ object Demo07_ExportEachWindowComputeDataToHDFSOrMySQL {
 
         // 写出MySQL
         rdd.foreachPartition((iter: Iterator[(String, Int)]) => {
-          val conn: Connection = DriverManager.getConnection("jdbc:mysql://node3:3306/test?characterEncoding=UTF-8","root","123456")
+          val conn: Connection = DriverManager.getConnection("jdbc:mysql://node3:3306/mytest?characterEncoding=UTF-8","root","123456")
           val sql:String = "REPLACE INTO `t_hotwords` (`time`, `word`, `count`) VALUES (?, ?, ?);"
           val ps: PreparedStatement = conn.prepareStatement(sql)//获取预编译语句对象
           iter.foreach(t=>{
