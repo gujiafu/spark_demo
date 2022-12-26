@@ -3,3 +3,6 @@
 /.idea/
 /spark_demo (1).iml
 /spark_demo (2).iml
+/data/
+/data/input/
+/data/output/
