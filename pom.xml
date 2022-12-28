@@ -136,6 +136,12 @@
             <version>portable-1.7.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
