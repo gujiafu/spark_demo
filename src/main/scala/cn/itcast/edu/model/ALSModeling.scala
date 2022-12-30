@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import org.apache.hadoop.fs.Path
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.recommendation.{ALS, ALSModel}
+import org.apache.spark.sql.internal.SQLConf
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 
 /**
@@ -20,7 +21,7 @@ object ALSModeling {
       .master("local[*]")
       .appName("ALSModeling")
       .config("spark.local.dir", "temp")
-      .config("spark.sql.shuffle.partitions", "4")
+      .config(SQLConf.SHUFFLE_PARTITIONS.key, "4")
       .getOrCreate()
     spark.sparkContext.setLogLevel("WARN")
     import spark.implicits._

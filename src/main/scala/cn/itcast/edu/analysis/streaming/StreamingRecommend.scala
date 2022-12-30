@@ -9,6 +9,7 @@ import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkContext
 import org.apache.spark.ml.recommendation.ALSModel
 import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema
+import org.apache.spark.sql.internal.SQLConf
 import org.apache.spark.sql.{DataFrame, Dataset, SaveMode, SparkSession}
 import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
@@ -25,7 +26,7 @@ object StreamingRecommend {
   def main(args: Array[String]): Unit = {
     //1.准备环境
     val spark: SparkSession = SparkSession.builder().appName("StreamingRecommend").master("local[*]")
-      .config("spark.sql.shuffle.partitions", "4") //默认是200,本地测试给少一点
+      .config(SQLConf.SHUFFLE_PARTITIONS.key, "4") //默认是200,本地测试给少一点
       .getOrCreate()
     val sc: SparkContext = spark.sparkContext
     sc.setLogLevel("WARN")

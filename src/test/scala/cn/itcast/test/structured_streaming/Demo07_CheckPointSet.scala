@@ -1,6 +1,7 @@
 package cn.itcast.test.structured_streaming
 
 import org.apache.spark.SparkContext
+import org.apache.spark.sql.internal.SQLConf
 import org.apache.spark.sql.streaming.OutputMode
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
@@ -16,7 +17,7 @@ object Demo07_CheckPointSet {
     val spark: SparkSession = SparkSession.builder()
       .appName(this.getClass.getSimpleName)
       .master("local[*]")
-      .config("spark.sql.shuffle.partitions", 2)
+      .config(SQLConf.SHUFFLE_PARTITIONS.key, 2)
       .getOrCreate()
     val sc: SparkContext = spark.sparkContext
     sc.setLogLevel("WARN")

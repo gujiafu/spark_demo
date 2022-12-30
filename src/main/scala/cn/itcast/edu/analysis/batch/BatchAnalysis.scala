@@ -3,6 +3,7 @@ package cn.itcast.edu.analysis.batch
 
 import cn.itcast.edu.bean.AnswerWithRecommendations
 import org.apache.spark.SparkContext
+import org.apache.spark.sql.internal.SQLConf
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
 
 /**
@@ -14,7 +15,7 @@ object BatchAnalysis {
     //1.准备环境
     val spark: SparkSession = SparkSession.builder().appName("BatchAnalysis")
       .master("local[*]")
-      .config("spark.sql.shuffle.partitions", "4") //默认是200,本地测试给少一点
+      .config(SQLConf.SHUFFLE_PARTITIONS.key, "4") //默认是200,本地测试给少一点
       .getOrCreate()
     val sc: SparkContext = spark.sparkContext
     sc.setLogLevel("WARN") //注意日志级别:debug、info、warn、error，设置为warn表示只显示warn和error

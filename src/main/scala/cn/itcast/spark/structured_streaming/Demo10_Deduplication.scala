@@ -1,6 +1,7 @@
 package cn.itcast.spark.structured_streaming
 
 import org.apache.spark.SparkContext
+import org.apache.spark.sql.internal.SQLConf
 import org.apache.spark.sql.streaming.OutputMode
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
@@ -30,7 +31,7 @@ object Demo10_Deduplication {
       .master("local[*]")
       // 测试阶段经常用这个 参数
       // 参数用来设置: 在shuffle阶段 默认的分区数量(如果你不设置默认是200)
-      .config("spark.sql.shuffle.partitions", "2")
+      .config(SQLConf.SHUFFLE_PARTITIONS.key, "2")
       .getOrCreate()
     val sc: SparkContext = spark.sparkContext
     sc.setLogLevel("WARN")

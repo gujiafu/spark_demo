@@ -1,6 +1,7 @@
 package cn.itcast.test.structured_streaming
 
 import org.apache.spark.SparkContext
+import org.apache.spark.sql.internal.SQLConf
 import org.apache.spark.sql.streaming.OutputMode
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
 
@@ -23,7 +24,7 @@ object Demo04_Operator {
     val spark: SparkSession = SparkSession.builder()
       .appName(this.getClass.getSimpleName)
       .master("local[3]")
-      .config("spark.sql.shuffle.partitions", 9)
+      .config(SQLConf.SHUFFLE_PARTITIONS.key, 9)
       .getOrCreate()
     val sc: SparkContext = spark.sparkContext
     sc.setLogLevel("WARN")
